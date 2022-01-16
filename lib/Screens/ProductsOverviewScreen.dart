@@ -37,6 +37,8 @@ class ProductsOverviewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xff93cd48),
+        // backgroundColor: Color.fromRGBO(24, 13, 198, 1.0),
         title: Text('Shop Force'),
         centerTitle: true,
       ),
