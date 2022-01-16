@@ -5,6 +5,8 @@ import '../Widgets/ProductItem.dart';
 
 class ProductsOverviewScreen extends StatelessWidget {
   // const ProductsOverviewScreen({Key? key}) : super(key: key);
+  static const String id = '/product_overview';
+
   final List<ProductModel> loadedProducts = [
     ProductModel(
       id: 'p1',
@@ -36,26 +38,43 @@ class ProductsOverviewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffffc9ea),
       appBar: AppBar(
-        backgroundColor: Color(0xff93cd48),
+        // backgroundColor: Color(0xff93cd48),
         // backgroundColor: Color.fromRGBO(24, 13, 198, 1.0),
         title: Text('Shop Force'),
         centerTitle: true,
       ),
-      body: GridView.builder(
-        padding: const EdgeInsets.all(10.0),
-        itemCount: loadedProducts.length,
-        itemBuilder: (ctx,i) => ProductItem(
-          id: loadedProducts[i].id,
-        title: loadedProducts[i].title,
-        imageUrl: loadedProducts[i].imageUrl,
-      ) ,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 3/2,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-        ),
+      body: Stack(
+        children: [
+          Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.white24,
+                    Colors.red,
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              )
+          ),
+          GridView.builder(
+            padding: const EdgeInsets.all(10.0),
+            itemCount: loadedProducts.length,
+            itemBuilder: (ctx,i) => ProductItem(
+              id: loadedProducts[i].id,
+            title: loadedProducts[i].title,
+            imageUrl: loadedProducts[i].imageUrl,
+          ) ,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 3/2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+            ),
+          ),
+        ],
       ),
     );
   }

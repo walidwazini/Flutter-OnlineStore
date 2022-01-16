@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../Screens/ProductDetailScreen.dart';
 
 class ProductItem extends StatelessWidget {
   // const ProductItem({Key? key}) : super(key: key);
@@ -14,33 +15,45 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridTile(
-      child: Image.network(
-        imageUrl,
-        fit: BoxFit.cover,
-      ),
-      footer: GridTileBar(
-        backgroundColor: Colors.black54,
-        leading: IconButton(
-          icon: Icon(
-            Icons.favorite,
-            size: 14,
-          ),
-          onPressed: () {},
-        ),
-        title: Text(
-          title,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 15,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12),
+      child: GridTile(
+        child: GestureDetector(
+          onTap: () {
+            Navigator.of(context).pushNamed(
+              ProductDetailScreen.routeName,
+              arguments: id,
+            );
+          },
+          child: Image.network(
+            imageUrl,
+            fit: BoxFit.cover,
           ),
         ),
-        trailing: IconButton(
-          icon: Icon(
-            Icons.add_shopping_cart,
-            size: 14,
+        footer: GridTileBar(
+          backgroundColor: Colors.black54,
+          leading: IconButton(
+            icon: Icon(
+              Icons.favorite,
+              size: 14,
+            ),
+            onPressed: () {},
           ),
-          onPressed: () {},
+          title: Text(
+            title,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 15,
+            ),
+          ),
+          trailing: IconButton(
+            icon: Icon(
+              Icons.add_shopping_cart,
+              size: 14,
+            ),
+            color: Theme.of(context).highlightColor,
+            onPressed: () {},
+          ),
         ),
       ),
     );
