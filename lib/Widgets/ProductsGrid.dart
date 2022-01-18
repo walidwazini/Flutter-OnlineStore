@@ -11,6 +11,7 @@ class ProductsGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productsData =  Provider.of<ProductProvider>(context);
+    //items is a getter
     final loadedProducts = productsData.items;
 
     return GridView.builder(

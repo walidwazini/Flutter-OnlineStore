@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../Providers/ProductsProvider.dart';
 
 class ProductDetailScreen extends StatelessWidget {
   // final String title;
@@ -7,13 +10,16 @@ class ProductDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final productID =  ModalRoute.of(context)?.settings.arguments as String ;
+    final productID = ModalRoute.of(context)?.settings.arguments as String;
     // Todo Get all data from id
+    final loadedProducts = Provider.of<ProductProvider>(context)
+        .items
+        .firstWhere((element) => element.id == productID);
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('title'),
+        title: Text(loadedProducts.title),
       ),
     );
   }
