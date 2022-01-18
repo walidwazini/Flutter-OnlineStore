@@ -1,4 +1,6 @@
-class ProductModel {
+import 'package:flutter/foundation.dart';
+
+class ProductModel with ChangeNotifier {
   final String id;
   final String title;
   final String? description;
@@ -14,4 +16,14 @@ class ProductModel {
     required this.imageUrl,
     this.isFavourite = false,
   });
+
+  void toggleFavoriteStatus() {
+    isFavourite = !isFavourite;
+    notifyListeners();
+    if (isFavourite == true) {
+      print('favourite');
+    } else {
+    print('not favourite');
+    }
+  }
 }

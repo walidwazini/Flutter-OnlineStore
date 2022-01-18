@@ -12,9 +12,8 @@ class ProductDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final productID = ModalRoute.of(context)?.settings.arguments as String;
     // Todo Get all data from id
-    final loadedProducts = Provider.of<ProductProvider>(context)
-        .items
-        .firstWhere((element) => element.id == productID);
+    final loadedProducts = Provider.of<ProductProvider>(context, listen: false)
+        .findById(productID);
 
     return Scaffold(
       appBar: AppBar(
