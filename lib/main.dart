@@ -13,8 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return ChangeNotifierProvider(
-      create: (ctx) => ProductProvider(),
+    return ChangeNotifierProvider.value(
+      value: ProductProvider(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'My App',
