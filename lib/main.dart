@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.black12,
           highlightColor: Color.fromRGBO(193, 66, 165, 1.0),
           appBarTheme: AppBarTheme(
-            color: Color(0xff1e18ae),
+            color: Color(0xffbe1767),
           ),
           textTheme: GoogleFonts.robotoTextTheme(textTheme).copyWith(
             bodyText1: GoogleFonts.oswald(textStyle: textTheme.bodyText1),
