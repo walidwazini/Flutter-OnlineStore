@@ -19,11 +19,12 @@ class ProductModel with ChangeNotifier {
 
   void toggleFavoriteStatus() {
     isFavourite = !isFavourite;
-    notifyListeners();
     if (isFavourite == true) {
-      print('favourite');
+      print(' ${this.title} favourite');
     } else {
-    print('not favourite');
+    print(' ${this.title} not favourite');
     }
+    notifyListeners();
+
   }
 }

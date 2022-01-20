@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 
 import '../Widgets/ProductsGrid.dart';
-import '../Widgets/ProductItem.dart';
 
-class ProductsOverviewScreen extends StatelessWidget {
+enum FilterOptions {
+  Favorites,
+  All,
+}
+
+class ProductsOverviewScreen extends StatefulWidget {
   // const ProductsOverviewScreen({Key? key}) : super(key: key);
   static const String id = '/product_overview';
+
+  @override
+  State<ProductsOverviewScreen> createState() => _ProductsOverviewScreenState();
+}
+
+class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
+  var _showOnlyFavorites = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,11 +27,36 @@ class ProductsOverviewScreen extends StatelessWidget {
         // backgroundColor: Color.fromRGBO(24, 13, 198, 1.0),
         title: Text('Shop Force'),
         centerTitle: true,
+        actions: [
+          PopupMenuButton(
+            onSelected: (FilterOptions selectedValue) {
+              setState(() {
+                if (selectedValue == FilterOptions.Favorites) {
+                  _showOnlyFavorites = true;
+                } else {
+                  // .. show all product
+                  _showOnlyFavorites = false;
+                }
+              });
+            },
+            icon: Icon(Icons.more_vert),
+            itemBuilder: (_) => [
+              PopupMenuItem(
+                child: Text('Only Favourites'),
+                value: FilterOptions.Favorites,
+              ),
+              PopupMenuItem(
+                child: Text('Show All'),
+                value: FilterOptions.All,
+              ),
+            ],
+          )
+        ],
       ),
       body: Stack(
         children: [
           Container(
-            child: ProductsGrid(),
+              child: ProductsGrid(_showOnlyFavorites),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
@@ -29,14 +66,12 @@ class ProductsOverviewScreen extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
-              )
-          ),
+              )),
         ],
       ),
     );
   }
 }
-
 
 // Container(
 // decoration: BoxDecoration(
@@ -50,4 +85,3 @@ class ProductsOverviewScreen extends StatelessWidget {
 // ),
 // )
 // ),
-

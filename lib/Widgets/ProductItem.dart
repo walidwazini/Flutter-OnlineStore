@@ -6,20 +6,10 @@ import 'package:shop_force/Providers/ProductsProvider.dart';
 import '../Screens/ProductDetailScreen.dart';
 
 class ProductItem extends StatelessWidget {
-  // const ProductItem({Key? key}) : super(key: key);
-  // final String id;
-  // final String title;
-  // final String imageUrl;
-  //
-  // ProductItem({
-  //   required this.id,
-  //   required this.title,
-  //   required this.imageUrl,
-  // });
-
   @override
   Widget build(BuildContext context) {
-    final product = Provider.of<ProductModel>(context);
+    final product = Provider.of<ProductModel>(context, listen: false);
+    print('product rebuilds');
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: GridTile(
@@ -37,16 +27,17 @@ class ProductItem extends StatelessWidget {
         ),
         footer: GridTileBar(
           backgroundColor: Colors.black54,
-          leading: IconButton(
-            icon: Icon(
-              Icons.favorite,
-              size: 14,
-              color: product.isFavourite ? Colors.red : Colors.white70,
+          leading:  Consumer<ProductModel>(
+            builder: (ctx, product, child) => IconButton(
+              icon: Icon(
+                Icons.favorite,
+                size: 14,
+                color: product.isFavourite ? Colors.red : Colors.white70,
+              ),
+              onPressed: () {
+                product.toggleFavoriteStatus();
+              },
             ),
-            onPressed: () {
-              product.toggleFavoriteStatus();
-
-            },
           ),
           title: Text(
             product.title,

@@ -32,15 +32,33 @@ class ProductProvider with ChangeNotifier {
         imageUrl: 'https://picsum.photos/200/300/'),
   ];
 
+  // var _showFavoritesOnly = false;
+
   List<ProductModel> get items {
+    // if (_showFavoritesOnly) {
+    //   return _items.where((element) => element.isFavourite).toList();
+    // }
     return [..._items];
   }
 
-  ProductModel findById(String id){
+  List<ProductModel> get favoriteItems {
+    return _items.where((element) => element.isFavourite).toList();
+  }
+
+  ProductModel findById(String id) {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
-  void addProduct(){
+  // void showFavoritesOnly() {
+  //   _showFavoritesOnly = true;
+  //   notifyListeners();
+  // }
+  // void showAll() {
+  //   _showFavoritesOnly = false;
+  //   notifyListeners();
+  // }
+
+  void addProduct() {
     // _items.add(value);
     notifyListeners();
   }
