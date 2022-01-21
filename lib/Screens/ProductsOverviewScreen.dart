@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../Widgets/ProductsGrid.dart';
+import '../Widgets/Badge.dart';
+import '../Providers/CartProvider.dart';
 
 enum FilterOptions {
   Favorites,
@@ -20,53 +23,63 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // final cartData = Provider.of<CartProvider>(context);
     return Scaffold(
       backgroundColor: Color(0xffffc9ea),
       appBar: AppBar(
-        // backgroundColor: Color(0xff93cd48),
-        // backgroundColor: Color.fromRGBO(24, 13, 198, 1.0),
-        title: Text('Shop Force'),
-        centerTitle: true,
-        actions: [
-          PopupMenuButton(
-            onSelected: (FilterOptions selectedValue) {
-              setState(() {
-                if (selectedValue == FilterOptions.Favorites) {
-                  _showOnlyFavorites = true;
-                } else {
-                  // .. show all product
-                  _showOnlyFavorites = false;
-                }
-              });
-            },
-            icon: Icon(Icons.more_vert),
-            itemBuilder: (_) => [
-              PopupMenuItem(
-                child: Text('Only Favourites'),
-                value: FilterOptions.Favorites,
+          // backgroundColor: Color(0xff93cd48),
+          // backgroundColor: Color.fromRGBO(24, 13, 198, 1.0),
+          title: Text('Shop Force'),
+          centerTitle: true,
+          leading: Consumer<CartProvider?>(
+            builder: (_, cartData, ch) => Badge(
+              child: IconButton(
+                icon: Icon(Icons.shopping_cart),
+                onPressed: () {},
               ),
-              PopupMenuItem(
-                child: Text('Show All'),
-                value: FilterOptions.All,
-              ),
-            ],
-          )
-        ],
-      ),
+              value: cartData!.itemCount.toString(),
+            ),
+          ),
+          actions: [
+            PopupMenuButton(
+              onSelected: (FilterOptions selectedValue) {
+                setState(() {
+                  if (selectedValue == FilterOptions.Favorites) {
+                    _showOnlyFavorites = true;
+                  } else {
+                    // .. show all product
+                    _showOnlyFavorites = false;
+                  }
+                });
+              },
+              icon: Icon(Icons.more_vert),
+              itemBuilder: (_) => [
+                PopupMenuItem(
+                  child: Text('Only Favourites'),
+                  value: FilterOptions.Favorites,
+                ),
+                PopupMenuItem(
+                  child: Text('Show All'),
+                  value: FilterOptions.All,
+                ),
+              ],
+            ),
+          ]),
       body: Stack(
         children: [
           Container(
-              child: ProductsGrid(_showOnlyFavorites),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.white24,
-                    Colors.red,
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              )),
+            child: ProductsGrid(_showOnlyFavorites),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Colors.white24,
+                  Colors.red,
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+          ),
         ],
       ),
     );

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_force/Models/ProductModel.dart';
 
-import 'package:shop_force/Providers/ProductsProvider.dart';
+import 'package:shop_force/Models/ProductModel.dart';
+import '../Providers/CartProvider.dart';
 import '../Screens/ProductDetailScreen.dart';
 
 class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<ProductModel>(context, listen: false);
+    // Widget does not rebuild when changes occur in cart while listen: false
+    final cart = Provider.of<CartProvider>(context, listen: false);
     print('product rebuilds');
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: GridTile(
@@ -27,7 +30,7 @@ class ProductItem extends StatelessWidget {
         ),
         footer: GridTileBar(
           backgroundColor: Colors.black54,
-          leading:  Consumer<ProductModel>(
+          leading: Consumer<ProductModel>(
             builder: (ctx, product, child) => IconButton(
               icon: Icon(
                 Icons.favorite,
@@ -52,7 +55,13 @@ class ProductItem extends StatelessWidget {
               size: 14,
             ),
             color: Theme.of(context).highlightColor,
-            onPressed: () {},
+            onPressed: () {
+              cart.addItem(
+                productId: product.id,
+                price: product.price,
+                title: product.title,
+              );
+            },
           ),
         ),
       ),

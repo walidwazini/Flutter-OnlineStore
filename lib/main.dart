@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:shop_force/Screens/TestScreen.dart';
 
 import './Providers/ProductsProvider.dart';
+import './Providers/CartProvider.dart';
 import './Screens/ProductsOverviewScreen.dart';
 import './Screens/ProductDetailScreen.dart';
 
@@ -13,8 +15,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
-    return ChangeNotifierProvider(
-      create: (ctx) => ProductProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (productCtx) => ProductProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (cartCtx) => CartProvider(),
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'My App',
@@ -29,9 +38,11 @@ class MyApp extends StatelessWidget {
             bodyText1: GoogleFonts.oswald(textStyle: textTheme.bodyText1),
           ),
         ),
+        // home: TestScreen(),
         home: ProductsOverviewScreen(),
         routes: {
           ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
+          TestScreen.routeName : (ctx) => TestScreen()
         },
       ),
     );
