@@ -27,20 +27,13 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
     return Scaffold(
       backgroundColor: Color(0xffffc9ea),
       appBar: AppBar(
-          // backgroundColor: Color(0xff93cd48),
-          // backgroundColor: Color.fromRGBO(24, 13, 198, 1.0),
+
           title: Text('Shop Force'),
           centerTitle: true,
           actions: [
             // Todo : Badge
             // Should be use for Consumer
-            Badge(
-              child: IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.shopping_cart),
-              ),
-              value: '1',
-            ),
+            originalBadge(),
             PopupMenuButton(
               onSelected: (FilterOptions selectedValue) {
                 setState(() {
