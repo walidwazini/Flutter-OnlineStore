@@ -31,16 +31,16 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
           // backgroundColor: Color.fromRGBO(24, 13, 198, 1.0),
           title: Text('Shop Force'),
           centerTitle: true,
-          leading: Consumer<CartProvider?>(
-            builder: (_, cartData, ch) => Badge(
-              child: IconButton(
-                icon: Icon(Icons.shopping_cart),
-                onPressed: () {},
-              ),
-              value: cartData!.itemCount.toString(),
-            ),
-          ),
           actions: [
+            // Todo : Badge
+            // Should be use for Consumer
+            Badge(
+              child: IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.shopping_cart),
+              ),
+              value: '1',
+            ),
             PopupMenuButton(
               onSelected: (FilterOptions selectedValue) {
                 setState(() {
@@ -81,6 +81,18 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget originalBadge() {
+    return Consumer<CartProvider>(
+      builder: (_, cartData, ch) => Badge(
+        child: IconButton(
+          icon: Icon(Icons.shopping_cart),
+          onPressed: () {},
+        ),
+        value: cartData.itemCount.toString(),
       ),
     );
   }
