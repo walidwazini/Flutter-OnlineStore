@@ -29,7 +29,7 @@ class ProductItem extends StatelessWidget {
           ),
         ),
         footer: GridTileBar(
-          backgroundColor: Colors.black54,
+          backgroundColor: Colors.black12,
           leading: Consumer<ProductModel>(
             builder: (ctx, product, child) => IconButton(
               icon: Icon(
@@ -54,7 +54,7 @@ class ProductItem extends StatelessWidget {
               Icons.add_shopping_cart,
               size: 14,
             ),
-            color: Theme.of(context).highlightColor,
+            color: Colors.pink,
             onPressed: () {
               cart.addItem(
                 productId: product.id,

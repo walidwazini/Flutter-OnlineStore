@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../Screens/CartScreen.dart';
 import '../Widgets/ProductsGrid.dart';
 import '../Widgets/Badge.dart';
 import '../Providers/CartProvider.dart';
@@ -27,9 +28,12 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
     return Scaffold(
       backgroundColor: Color(0xffffc9ea),
       appBar: AppBar(
-
           title: Text('Shop Force'),
           centerTitle: true,
+          leading: IconButton(
+            icon: Icon(Icons.ac_unit),
+            onPressed: () {},
+          ),
           actions: [
             // Todo : Badge
             // Should be use for Consumer
@@ -60,19 +64,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
           ]),
       body: Stack(
         children: [
-          Container(
-            child: ProductsGrid(_showOnlyFavorites),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.white24,
-                  Colors.red,
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-          ),
+          ProductsGrid(_showOnlyFavorites),
         ],
       ),
     );
@@ -83,7 +75,9 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
       builder: (_, cartData, ch) => Badge(
         child: IconButton(
           icon: Icon(Icons.shopping_cart),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed(CartScreen.routeName);
+          },
         ),
         value: cartData.itemCount.toString(),
       ),

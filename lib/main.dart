@@ -7,6 +7,7 @@ import './Providers/ProductsProvider.dart';
 import './Providers/CartProvider.dart';
 import './Screens/ProductsOverviewScreen.dart';
 import './Screens/ProductDetailScreen.dart';
+import './Screens/CartScreen.dart';
 
 void main() => runApp(MyApp());
 
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
           highlightColor: Color.fromRGBO(193, 66, 165, 1.0),
           appBarTheme: AppBarTheme(
             color: Color(0xff210ca5),
+            // color: Theme.of(context).primaryColor,
           ),
           textTheme: GoogleFonts.robotoTextTheme(textTheme).copyWith(
             bodyText1: GoogleFonts.oswald(textStyle: textTheme.bodyText1),
@@ -42,7 +44,8 @@ class MyApp extends StatelessWidget {
         home: ProductsOverviewScreen(),
         routes: {
           ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
-          TestScreen.routeName : (ctx) => TestScreen()
+          TestScreen.routeName : (ctx) => TestScreen(),
+          CartScreen.routeName: (ctx) => CartScreen(),
         },
       ),
     );
