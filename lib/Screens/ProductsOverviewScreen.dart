@@ -1,5 +1,7 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../Screens/CartScreen.dart';
 import '../Widgets/ProductsGrid.dart';
@@ -32,7 +34,13 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
           centerTitle: true,
           leading: IconButton(
             icon: Icon(Icons.ac_unit),
-            onPressed: () {},
+            onPressed: () {
+              FToast().showToast(
+                child: Text('Hello'),
+                gravity: ToastGravity.CENTER,
+              );
+              print(Random().nextInt(3000));
+            },
           ),
           actions: [
             // Todo : Badge

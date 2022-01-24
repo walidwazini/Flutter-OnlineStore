@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shop_force/Screens/TestScreen.dart';
 
 import './Providers/ProductsProvider.dart';
+import './Providers/OrdersProvider.dart';
 import './Providers/CartProvider.dart';
 import './Screens/ProductsOverviewScreen.dart';
 import './Screens/ProductDetailScreen.dart';
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (cartCtx) => CartProvider(),
         ),
+        ChangeNotifierProvider.value(
+          value: OrdersProvider(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

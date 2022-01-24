@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:shop_force/Models/ProductModel.dart';
 import '../Providers/CartProvider.dart';
