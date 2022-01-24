@@ -7,6 +7,7 @@ import '../Screens/CartScreen.dart';
 import '../Widgets/ProductsGrid.dart';
 import '../Widgets/Badge.dart';
 import '../Providers/CartProvider.dart';
+import '../Widgets/AppDrawer.dart';
 
 enum FilterOptions {
   Favorites,
@@ -32,16 +33,6 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
       appBar: AppBar(
           title: Text('Shop Force'),
           centerTitle: true,
-          leading: IconButton(
-            icon: Icon(Icons.ac_unit),
-            onPressed: () {
-              FToast().showToast(
-                child: Text('Hello'),
-                gravity: ToastGravity.CENTER,
-              );
-              print(Random().nextInt(3000));
-            },
-          ),
           actions: [
             // Todo : Badge
             // Should be use for Consumer
@@ -70,6 +61,7 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
               ],
             ),
           ]),
+      drawer: AppDrawer(),
       body: Stack(
         children: [
           ProductsGrid(_showOnlyFavorites),

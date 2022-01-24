@@ -25,7 +25,7 @@ class OrdersProvider with ChangeNotifier {
     return [..._orders];
   }
 
-  void addOrder(List<CartModel> cartProducts, double total) {
+  void addOrder({required List<CartModel> cartProducts, required double total}) {
     _orders.insert(
       0,
       OrderItemModel(
