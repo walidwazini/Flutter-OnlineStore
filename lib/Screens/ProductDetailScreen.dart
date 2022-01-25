@@ -14,6 +14,7 @@ class ProductDetailScreen extends StatelessWidget {
     // Todo Get all data from id
     final loadedProducts = Provider.of<ProductProvider>(context, listen: false)
         .findById(productID);
+    // listen : false because we only need get the data one time
 
     return Scaffold(
       appBar: AppBar(

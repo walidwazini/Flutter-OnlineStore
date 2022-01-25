@@ -33,6 +33,30 @@ class CartItem extends StatelessWidget {
         padding: EdgeInsets.only(right: 20),
       ),
       direction: DismissDirection.endToStart,
+      confirmDismiss: (direction) {
+        return showDialog(
+          // show dialog return a Future but on boolean value
+          context: context,
+          builder: (ctx) => AlertDialog(
+            title: Text('Remove Item'),
+            content: Text('Confirm to remove item  ?'),
+            actions: [
+              TextButton(
+                child: Text('Yes'),
+                onPressed: (){
+                  Navigator.of(ctx).pop(true);
+                },
+              ),
+              TextButton(
+                child: Text('No'),
+                onPressed: (){
+                  Navigator.of(ctx).pop(false);
+                },
+              ),
+            ],
+          ),
+        );
+      },
       onDismissed: (direction) {
         Provider.of<CartProvider>(context, listen: false).removeItem(productId);
         ScaffoldMessenger.of(context).showSnackBar(

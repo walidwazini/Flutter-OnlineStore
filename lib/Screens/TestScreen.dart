@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../Widgets/Badge.dart';
-import '../Providers/CartProvider.dart';
 
 class TestScreen extends StatelessWidget {
   static const routeName = '/test';

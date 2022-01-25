@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:shop_force/Models/ProductModel.dart';
 import '../Providers/CartProvider.dart';
@@ -62,11 +61,18 @@ class ProductItem extends StatelessWidget {
                 price: product.price,
                 title: product.title,
               );
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text('Added To Cart'),
-                  duration: const Duration(seconds: 1),
+                  duration: const Duration(seconds: 2),
                   backgroundColor: Color(0xff7559ec),
+                  action: SnackBarAction(
+                    label: 'Undo',
+                    onPressed: () {
+                      cart.removeSingleItem(product.id);
+                    },
+                  ),
                 ),
               );
             },
