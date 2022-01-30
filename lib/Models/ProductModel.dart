@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 class ProductModel with ChangeNotifier {
-  final String id;
+  final String? id;
   final String title;
   final String? description;
   final double price;
@@ -9,7 +9,7 @@ class ProductModel with ChangeNotifier {
   bool isFavourite;
 
   ProductModel({
-    required this.id,
+    this.id,
     required this.title,
     this.description,
     required this.price,
