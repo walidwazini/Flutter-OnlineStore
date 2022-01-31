@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
 
@@ -58,8 +60,16 @@ class ProductProvider with ChangeNotifier {
   //   notifyListeners();
   // }
 
-  void addProduct() {
-    // _items.add(value);
+  void addProduct(ProductModel product) {
+    final newProduct = ProductModel(
+      id: Random().nextInt(3000).toString(),
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      imageUrl: product.imageUrl,
+    );
+    // _items.add(newProduct);
+    _items.insert(0, newProduct);
     notifyListeners();
   }
 }

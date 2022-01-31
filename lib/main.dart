@@ -43,12 +43,12 @@ class MyApp extends StatelessWidget {
             color: Color(0xff210ca5),
             // color: Theme.of(context).primaryColor,
           ),
-          textTheme: GoogleFonts.robotoTextTheme(textTheme).copyWith(
+          textTheme: GoogleFonts.poppinsTextTheme(textTheme).copyWith(
             bodyText1: GoogleFonts.oswald(textStyle: textTheme.bodyText1),
           ),
         ),
         // home: TestScreen(),
-        home: ProductsOverviewScreen(),
+        home: UserProductsScreen(),
         routes: {
           ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
           TestScreen.routeName : (ctx) => TestScreen(),
