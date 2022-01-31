@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:shop_force/Screens/ProductsOverviewScreen.dart';
 import 'package:shop_force/Screens/TestScreen.dart';
 
 import './Providers/ProductsProvider.dart';
 import './Providers/OrdersProvider.dart';
 import './Providers/CartProvider.dart';
-import './Screens/ProductsOverviewScreen.dart';
 import './Screens/ProductDetailScreen.dart';
 import './Screens/CartScreen.dart';
 import './Screens/OrdersScreen.dart';
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         // home: TestScreen(),
-        home: UserProductsScreen(),
+        home: ProductsOverviewScreen(),
         routes: {
           ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
           TestScreen.routeName : (ctx) => TestScreen(),
