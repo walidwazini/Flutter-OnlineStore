@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop_force/Screens/AddProductScreen.dart';
 import 'package:shop_force/Screens/EditProductScreen.dart';
 import 'package:shop_force/Widgets/AppDrawer.dart';
 
@@ -17,12 +18,12 @@ class UserProductsScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Your Products'),
+        title: const Text('Manage Your Products'),
         actions: [
           IconButton(
             icon: Icon(Icons.add),
             onPressed: () {
-              Navigator.of(context).pushNamed(EditProductScreen.routeName);
+              Navigator.of(context).pushNamed(AddProductScreen.routeName);
             },
           ),
         ],
@@ -44,6 +45,14 @@ class UserProductsScreen extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Theme.of(context).primaryColor,
+        onPressed: (){
+          Navigator.of(context).pushNamed(AddProductScreen.routeName);
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

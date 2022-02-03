@@ -31,13 +31,13 @@ class _EditProductScreenState extends State<EditProductScreen> {
     price: 0,
     imageUrl: '',
   );
-  var _initValues = {
-    'title': '',
-    'description': '',
-    'price': '',
-    'imageUrl': '',
-  };
-  var _isInit = true;
+  // var _initValues = {
+  //   'title': '',
+  //   'description': '',
+  //   'price': '',
+  //   'imageUrl': '',
+  // };
+  // var _isInit = true;
 
   @override
   void initState() {
@@ -46,33 +46,33 @@ class _EditProductScreenState extends State<EditProductScreen> {
     super.initState();
   }
 
-  @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    if (_isInit) {
-      final productId = ModalRoute
-          .of(context)!
-          .settings
-          .arguments
-          .toString();
-      if (productId != null) {
-        _editedProduct = Provider.of<ProductProvider>(context, listen: false)
-            .findById(productId);
-        _initValues = {
-          'title': _editedProduct.title,
-          'description': _editedProduct.description,
-          'price': _editedProduct.price.toString(),
-          'imageUrl': '',
-        };
-        // _titleController.text =_editedProduct.title;
-        // _descController.text = _editedProduct.description;
-        // _priceController.text = _editedProduct.price.toString();
-        _imageUrlController.text = _editedProduct.imageUrl;
-      }
-    }
-    _isInit = false;
-    super.didChangeDependencies();
-  }
+  // @override
+  // void didChangeDependencies() {
+  //   // TODO: implement didChangeDependencies
+  //   if (_isInit) {
+  //     final productId = ModalRoute
+  //         .of(context)!
+  //         .settings
+  //         .arguments
+  //         .toString();
+  //     if (productId != null) {
+  //       _editedProduct = Provider.of<ProductProvider>(context, listen: false)
+  //           .findById(productId);
+  //       _initValues = {
+  //         'title': _editedProduct.title,
+  //         'description': _editedProduct.description,
+  //         'price': _editedProduct.price.toString(),
+  //         'imageUrl': '',
+  //       };
+  //       // _titleController.text =_editedProduct.title;
+  //       // _descController.text = _editedProduct.description;
+  //       // _priceController.text = _editedProduct.price.toString();
+  //       _imageUrlController.text = _editedProduct.imageUrl;
+  //     }
+  //   }
+  //   _isInit = false;
+  //   super.didChangeDependencies();
+  // }
 
   @override
   void dispose() {
@@ -272,7 +272,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                     ),
                   )
                 ],
-              )
+              ),
             ],
           ),
         ),

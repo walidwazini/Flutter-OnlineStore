@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:shop_force/Screens/AddProductScreen.dart';
 import 'package:shop_force/Screens/ProductsOverviewScreen.dart';
 import 'package:shop_force/Screens/TestScreen.dart';
 
@@ -55,6 +56,7 @@ class MyApp extends StatelessWidget {
           CartScreen.routeName: (ctx) => CartScreen(),
           OrdersScreen.routeName: (ctx) => OrdersScreen(),
           UserProductsScreen.routeName: (ctx) => UserProductsScreen(),
+          AddProductScreen.routeName: (ctx) => AddProductScreen(),
           EditProductScreen.routeName: (ctx) => EditProductScreen()
         },
       ),
