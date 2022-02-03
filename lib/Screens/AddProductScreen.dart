@@ -22,12 +22,13 @@ class _AddProductScreenState extends State<AddProductScreen> {
   final _descFocusNode = FocusNode();
   final _imageFocusNode = FocusNode();
   final _formKey = GlobalKey<FormState>();
-  var _editedProduct = ProductModel(
+  var _newProduct = ProductModel(
     id: null,
     title: '',
     description: '',
     price: 0,
-    imageUrl: 'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
+    imageUrl:
+        'https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png',
   );
 
   // @override
@@ -56,20 +57,20 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
   void _saveForm() {
     final isValid = _formKey.currentState!.validate();
-    final _newProduct = Provider.of<ProductProvider>(context, listen: false);
-    // if (isValid) {
-    //   return;
-    // }
+    final _productData = Provider.of<ProductProvider>(context, listen: false);
+    if (!isValid) {
+      return;
+    }
     _formKey.currentState!.save();
     // if (_editedProduct.id != null) {
     //   _newProduct.updateProducts(_editedProduct.id, _editedProduct);
     // } else {
     //   _newProduct.addProduct(_editedProduct);
     // }
-    print(' ${_editedProduct.title} ${_editedProduct.price} ');
-    print(_editedProduct.description);
-    print(_editedProduct.imageUrl);
-
+    print(' ${_newProduct.title} ${_newProduct.price} ');
+    print(_newProduct.description);
+    print(_newProduct.imageUrl);
+    _productData.addProduct(_newProduct);
     Navigator.of(context).pop();
   }
 
@@ -113,6 +114,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
         onFieldSubmitted: (_) {
           FocusScope.of(context).requestFocus(_priceFocusNode);
         },
+        onEditingComplete: () {
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
         validator: (value) {
           if (value!.isEmpty) {
             return 'Please provide a value';
@@ -120,13 +124,13 @@ class _AddProductScreenState extends State<AddProductScreen> {
           return null;
         },
         onSaved: (value) {
-          _editedProduct = ProductModel(
-            id: _editedProduct.id,
-            isFavourite: _editedProduct.isFavourite,
+          _newProduct = ProductModel(
+            id: _newProduct.id,
+            isFavourite: _newProduct.isFavourite,
             title: value!,
-            price: _editedProduct.price,
-            description: _editedProduct.description,
-            imageUrl: _editedProduct.imageUrl,
+            price: _newProduct.price,
+            description: _newProduct.description,
+            imageUrl: _newProduct.imageUrl,
           );
         },
       );
@@ -140,6 +144,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
         onFieldSubmitted: (_) {
           FocusScope.of(context).requestFocus(_descFocusNode);
         },
+        onEditingComplete: () {
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
         validator: (value) {
           if (value!.isEmpty) {
             return 'Please provide a value';
@@ -147,19 +154,19 @@ class _AddProductScreenState extends State<AddProductScreen> {
           if (double.tryParse(value) == null) {
             return 'Enter a valid number';
           }
-          if (double.parse(value) <= 5) {
+          if (double.parse(value) <= 5.00) {
             return 'Minimum price is RM 5';
           }
           return null;
         },
         onSaved: (value) {
-          _editedProduct = ProductModel(
-              id: _editedProduct.id,
-              isFavourite: _editedProduct.isFavourite,
-              title: _editedProduct.title,
+          _newProduct = ProductModel(
+              id: _newProduct.id,
+              isFavourite: _newProduct.isFavourite,
+              title: _newProduct.title,
               price: double.parse(value!),
-              description: _editedProduct.description,
-              imageUrl: _editedProduct.imageUrl);
+              description: _newProduct.description,
+              imageUrl: _newProduct.imageUrl);
         },
       );
 
@@ -180,13 +187,13 @@ class _AddProductScreenState extends State<AddProductScreen> {
           return null;
         },
         onSaved: (value) {
-          _editedProduct = ProductModel(
-            id: _editedProduct.id,
-            isFavourite: _editedProduct.isFavourite,
-            title: _editedProduct.title,
-            price: _editedProduct.price,
+          _newProduct = ProductModel(
+            id: _newProduct.id,
+            isFavourite: _newProduct.isFavourite,
+            title: _newProduct.title,
+            price: _newProduct.price,
             description: value!,
-            imageUrl: _editedProduct.imageUrl,
+            imageUrl: _newProduct.imageUrl,
           );
         },
       );
@@ -239,12 +246,12 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 return null;
               },
               onSaved: (value) {
-                _editedProduct = ProductModel(
-                  id: _editedProduct.id,
-                  isFavourite: _editedProduct.isFavourite,
-                  title: _editedProduct.title,
-                  price: _editedProduct.price,
-                  description: _editedProduct.description,
+                _newProduct = ProductModel(
+                  id: _newProduct.id,
+                  isFavourite: _newProduct.isFavourite,
+                  title:_newProduct.title,
+                  price: _newProduct.price,
+                  description: _newProduct.description,
                   imageUrl: value!,
                 );
               },
