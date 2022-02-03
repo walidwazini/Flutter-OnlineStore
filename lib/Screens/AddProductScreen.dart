@@ -50,7 +50,15 @@ class _AddProductScreenState extends State<AddProductScreen> {
   }
 
   void _updateImageUrl() {
+    var conditionOne = !_imageUrlController.text.startsWith('http') &&
+        !_imageUrlController.text.startsWith('https');
+    var conditionTwo = !_imageUrlController.text.endsWith('.png') &&
+        !_imageUrlController.text.endsWith('.jpg') &&
+        !_imageUrlController.text.endsWith('.jpeg');
     if (!_imageFocusNode.hasFocus) {
+      if (conditionOne) {
+        return;
+      }
       setState(() {});
     }
   }
