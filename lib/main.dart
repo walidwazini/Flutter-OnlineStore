@@ -48,8 +48,8 @@ class MyApp extends StatelessWidget {
             bodyText1: GoogleFonts.oswald(textStyle: textTheme.bodyText1),
           ),
         ),
-        // home: TestScreen(),
-        home: ProductsOverviewScreen(),
+        home: UserProductsScreen(),
+        // home: ProductsOverviewScreen(),
         routes: {
           ProductDetailScreen.routeName: (ctx) => ProductDetailScreen(),
           TestScreen.routeName : (ctx) => TestScreen(),

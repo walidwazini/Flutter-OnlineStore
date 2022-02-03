@@ -259,6 +259,10 @@ class _EditProductScreenState extends State<EditProductScreen> {
                         }
                         return null;
                       },
+                      onEditingComplete: (){
+                        FocusManager.instance.primaryFocus?.unfocus();
+                        setState(() {});
+                      },
                       onSaved: (value) {
                         _editedProduct = ProductModel(
                           id: _editedProduct.id,
