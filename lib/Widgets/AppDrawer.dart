@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:shop_force/Screens/ProductsOverviewScreen.dart';
 import 'package:shop_force/Screens/UserProductsScreen.dart';
 
 
@@ -21,7 +22,11 @@ class AppDrawer extends StatelessWidget {
             leading: Icon(Icons.shop),
             title: Text('Shop'),
             onTap: (){
-              Navigator.of(context).pushReplacementNamed('/');
+              // Navigator.of(context).pushReplacementNamed(ProductsOverviewScreen.id);
+              Navigator.push(context, new MaterialPageRoute(
+                  builder: (context) => new ProductsOverviewScreen(),),
+              );
+              print('Hello');
             },
           ),
           Divider(),
